@@ -3,7 +3,6 @@ import React, { useEffect, useRef } from "react";
 
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { fetchFeedback } from "../../../lib/features/quizSlice";
-import Spin from "../shimmerUi/spin";
 
 const QuizFeedback = ({ complexity, totalQuiz, userScore }) => {
   const dispatch = useDispatch();
@@ -36,7 +35,7 @@ const QuizFeedback = ({ complexity, totalQuiz, userScore }) => {
       {status === "loading" ? (
         <p className="text-lg ">Loading...</p>
       ) : (
-        <p className="text-lg font-sans first-letter:font-bold first-letter:text-2xl">
+        <p className="text-lg font-sans text-justify first-letter:font-bold first-letter:text-2xl">
           {feedbackRes}
         </p>
       )}

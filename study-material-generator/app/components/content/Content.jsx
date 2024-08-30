@@ -2,21 +2,24 @@
 
 // react hooks
 import React, { useEffect, useState } from "react";
-   
+
 //components
 import Button from "../button/Button";
 import Summary from "../summary/Summary";
 import Quiz from "../quiz/Quiz";
 import FlashCard from "../flashCard/FlashCard";
 import FilterComponent from "../responsive/FilterComponent";
+
 // reading the queries
 import { useSearchParams } from "next/navigation";
 
+// redux hooks
+import { useDispatch, useSelector } from "react-redux";
+
 //redux slices for different different type
 import { fetchSummary } from "../../../lib/features/summarySlice";
-import { fetchQuiz } from "../../../lib/features/quizSlice";
+import { fetchQuiz, reset } from "../../../lib/features/quizSlice";
 import { fetchFlash } from "../../../lib/features/flashCardSlice";
-import { useDispatch, useSelector } from "react-redux";
 
 export default function Content() {
   const initData = { complexity: "", type: "" };
@@ -24,9 +27,14 @@ export default function Content() {
   // queies
   const [queries, setQueries] = useState(initData);
   const [topic, setTopic] = useState("");
+
   // for reading the queries
   const searchParams = useSearchParams();
+
+  // dispatch actions
   const dispatch = useDispatch();
+
+  // retrive the data from redux store
   const { summaryStatus, quizStatus, flashCardStatus } = useSelector(
     (store) => {
       return {
@@ -36,14 +44,18 @@ export default function Content() {
       };
     }
   );
+
+  // update the url queries according to the filter
   useEffect(() => {
     const url = new URL(window.location.href);
+
+    // storing the complexity
     const complexities = url.searchParams.getAll("complexity");
     const typeParam = url.searchParams.get("type");
     setQueries((pre) => {
       return {
         ...pre,
-        complexity: complexities.length ? complexities.join(",") : "easy",
+        complexity: complexities.length ? complexities.join(",") : "beginner",
         type: typeParam ? typeParam : "summary",
       };
     });
@@ -55,6 +67,7 @@ export default function Content() {
       dispatch(fetchSummary({ ...queries, topic }));
       setTopic("");
     } else if (queries?.type == "quiz") {
+      dispatch(reset());
       dispatch(fetchQuiz({ ...queries, topic }));
       setTopic("");
     } else if (queries?.type == "flashcards") {
@@ -69,17 +82,17 @@ export default function Content() {
   };
 
   return (
-    <div className="flex flex-col w-[98%] min-h-[100vh] justify-end relative">
+    <div className="flex flex-col w-[98%] min-h-[calc(100vh-60px)] justify-between md:justify-end relative overflow-auto">
+      <div className={`md:hidden`}>
+        <FilterComponent />
+      </div>
       {/* Chat Area */}
-      {queries.type === "summary" && <Summary />}
-      {queries.type === "quiz" && <Quiz />}
+      {queries.type === "summary" && <Summary {...queries} />}
+      {queries.type === "quiz" && <Quiz complexity={queries.complexity} />}
       {queries.type === "flashcards" && <FlashCard />}
 
       {/* Input Area */}
-      <div className="lg:hidden">
-        <FilterComponent />
-      </div>
-      <div className="p-4 mb-4 bg-gray-800 flex items-center w-full">
+      <div className="p-2 mb-3 mx-auto bg-gray-800 flex items-center w-full">
         <input
           type="text"
           value={topic}
@@ -96,12 +109,12 @@ export default function Content() {
             quizStatus == "loading" ||
             flashCardStatus == "loading"
           }
-          className="bg-black p-2 px-6 rounded-r-md hover:bg-gray-800 text-white hover:ring-1 hover:ring-white"
+          className="bg-black  px-6 py-2 rounded-r-md hover:bg-gray-800 text-white hover:ring-1 hover:ring-white"
         >
           {summaryStatus === "loading" ||
           quizStatus === "loading" ||
           flashCardStatus === "loading"
-            ? "Please wait!..."
+            ? "Wait..."
             : "Send"}
         </button>
       </div>

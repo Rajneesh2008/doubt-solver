@@ -100,10 +100,10 @@ export default function Sidebar() {
             <input
               type="checkbox"
               name="complexity"
-              value="easy"
+              value="beginner"
               className="text-black w-5 h-5 rounded-sm focus:ring-0 cursor-pointer"
               onChange={handleSelect}
-              checked={complexity.includes("easy")}
+              checked={complexity.includes("beginner")}
             />
             <label className="ml-3 text-white cursor-pointer font-medium text-lg">
               Beginner

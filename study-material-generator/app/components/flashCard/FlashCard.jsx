@@ -21,7 +21,7 @@ const FlashCard = () => {
   }
 
   return (
-    <div>
+    <div className="flex-grow p-4 overflow-y-auto">
       {flashCard?.length && (
         <h1 className="text-center font-bold text-xl py-2 shadow-sm shadow-white mb-4">
           Flash Cards

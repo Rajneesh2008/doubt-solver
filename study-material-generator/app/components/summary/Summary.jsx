@@ -1,8 +1,11 @@
+"use clinet";
 import React from "react";
-import { shallowEqual, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import Spin from "../../components/shimmerUi/spin";
+import { fetchSummary } from "../../../lib/features/summarySlice";
 
-const Summary = () => {
+const Summary = ({ complexity, type }) => {
+  const dispatch = useDispatch();
   const { summary, status, error } = useSelector((store) => {
     return {
       summary: store?.summary?.summaryData?.summary,
@@ -10,6 +13,10 @@ const Summary = () => {
       error: store?.summary?.summaryError,
     };
   }, shallowEqual);
+  const handleSuggestion = (value) => {
+    const queries = { complexity: complexity, type, topic: value };
+    dispatch(fetchSummary(queries));
+  };
 
   if (status === "loading") {
     return <Spin />;
@@ -24,10 +31,33 @@ const Summary = () => {
           {summary?.topic}
         </p>
       )}
-      <p className=" bg-gray-800 text-white text-lg font-poppins first-letter:font-bold first-letter:text-2xl">
+      <p className=" bg-gray-800 text-white text-lg font-poppins text-justify">
         {" "}
         {summary?.summary}
       </p>
+
+      {summary?.suggestions.length && (
+        <div className="mt-5 flex flex-col md:hidden">
+          <hr className="my-4 md:hidden" />
+          <h1 className="text-white cursor-pointer font-semibold text-xl">
+            You might like:
+          </h1>
+
+          <ul className="md:list-none sm:list-decimal  pl-5 cursor-pointer last:mb-0 transition duration-100">
+            {summary?.suggestions?.map((item, idx) => {
+              return (
+                <li
+                  className="  hover:bg-gray-500 p-2 hover:border-l-2 hover:border-l-white"
+                  key={idx + 1}
+                  onClick={() => handleSuggestion(item)}
+                >
+                  {item}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

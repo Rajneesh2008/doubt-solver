@@ -40,6 +40,8 @@ const quizSlice = createSlice({
       state.quizScore = 0;
       state.attemptQuiz = 0;
       state.wrongSelectedQue = [];
+      state.quizData = null;
+      state.feedbackData = null;
     },
     wrongSelection: (state, { payload }) => {
       state.wrongSelectedQue.push(payload);
