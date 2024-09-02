@@ -13,13 +13,13 @@ exports.generateStudyMaterial = async (
   // according the type chat gpt will generate response
   switch (type) {
     case "summary": {
-      prompt = `Summarize the key points of the topic '${topic}' for a ${complexity} level student.
+      prompt = `Summarize the key points of the topic '${topic}' for a ${complexity} level student. one things if level is beginner then explain like a 10 years student, if intermediate then a level will be 15 year student and if advance then professor like and content should be more specific.
        return response in the following parsable JSON formate:
         {
          topic:""topic",
          complexiy:"complexity",
          summary:"summary",
-         suggestions:[suggest minimum 5 relevant topic ]
+         suggestions:[suggest minimum 5 most specific relevant topic  ]
         }
 
         keep in mind all keys are same as mention in the formate otherwise my application will be broken
@@ -29,7 +29,7 @@ exports.generateStudyMaterial = async (
       return data;
     }
     case "flashcards": {
-      prompt = `Create minimum 5 flashcard object with id, questions and answer  for the topic '${topic}'.
+      prompt = `Create minimum 5 flashcard object with id, questions and answer  for the topic '${topic}'. Suppose it's best and unique flash Card.
        return response in the following parsable JSON formate:
        [{
        "id":1,
@@ -62,7 +62,7 @@ exports.generateStudyMaterial = async (
       return data;
     }
     case "quiz": {
-      prompt = `Create a quiz with minimum 5 questions on the topic of "${topic}" for a ${complexity} level student. Include multiple-choice options and provide the correct answer.
+      prompt = `Create a quiz with minimum 5 questions on the topic of "${topic}" for a ${complexity} level student i mean if it's beginner show give basic if intermediate then 3 years experience student if advance then a toughest level. Include multiple-choice options and provide the correct answer.
        return response in the following parsable JSON formate:
       [
     
@@ -122,7 +122,7 @@ exports.generateFeedBack = async (data, complexity, totalQuiz, userScore) => {
     )}.
     
     Based on these stats, provide a personalized feedback message for the user in a friendly and encouraging tone like in accuracy is greater than 80 percent start with excellent, if greter than 40 then good if below 40 not bad . Highlight their strengths and suggest specific areas for improvement. Keep in mind the user's score percentage and the provided data, and focus on areas where they struggled. The feedback should guide the user on how to improve and encourage them to keep trying.
-    
+    The feedback should be looks like a 10 years experience person is giving the feedback.
     Return the response in the following parsable JSON format:
     {
       "feedback": "genuine feedback"
