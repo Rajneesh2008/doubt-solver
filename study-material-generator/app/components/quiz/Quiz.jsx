@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import QuizCard from "./QuizCard";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { incScore, reset } from "../../../lib/features/quizSlice";
-import Spin from "../../components/shimmerUi/spin";
+import Spin from "../shimmerui/Loading";
 import QuizFeedback from "../feedback/Quizfeedback";
 
 const Quiz = ({ complexity }) => {

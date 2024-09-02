@@ -1,7 +1,7 @@
 "use clinet";
 import React from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import Spin from "../../components/shimmerUi/spin";
+import Spin from "../shimmerui/Loading";
 import { fetchSummary } from "../../../lib/features/summarySlice";
 
 const Summary = ({ complexity, type }) => {
