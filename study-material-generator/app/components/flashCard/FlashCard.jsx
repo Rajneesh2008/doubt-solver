@@ -2,7 +2,7 @@
 import React from "react";
 import { shallowEqual, useSelector } from "react-redux";
 import SingleCard from "./Card";
-import Spin from "../shimmerui/Loading";
+import { Spin } from "../shimmerui/Loading";
 
 const FlashCard = () => {
   const { flashCard, status, error } = useSelector((store) => {

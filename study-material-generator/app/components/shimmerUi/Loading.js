@@ -1,5 +1,5 @@
 import React from "react";
-const Spin = () => {
+export const Spin = () => {
   return (
     <div className="absolute top-1/2 left-[45%]">
       <svg
@@ -23,5 +23,3 @@ const Spin = () => {
     </div>
   );
 };
-
-export default Spin;
