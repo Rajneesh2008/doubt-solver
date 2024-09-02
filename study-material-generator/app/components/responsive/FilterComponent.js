@@ -70,7 +70,7 @@ const FilterComponent = () => {
         <select
           name="complexity"
           onChange={handleSelect}
-          className="border focus:border-none focus:ring-1 bg-gray-800
+          className="border focus:border-none focus:ring-1 bg-primary
            focus:ring-white mb-4 px-4 py-3 rounded-none shadow-sm text-base text-white w-33 cursor-pointer"
         >
           <option value="">--Select Level--</option>
@@ -84,7 +84,7 @@ const FilterComponent = () => {
           name="types"
           onChange={handleSelect}
           className="border focus:border-none focus:ring-1
-           focus:ring-white mb-4 px-4 py-3 bg-gray-800 rounded-none shadow-sm text-base text-white w-33"
+           focus:ring-white mb-4 px-4 py-3 bg-primary rounded-none shadow-sm text-base text-white w-33"
         >
           <option value="">--Select Type--</option>
           <option value="summary">Summary</option>

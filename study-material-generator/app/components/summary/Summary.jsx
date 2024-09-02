@@ -24,22 +24,19 @@ const Summary = ({ complexity, type }) => {
     <p>Error: Something went wrong \n {error}</p>;
   }
   return (
-    <div className="flex-grow p-4 overflow-y-auto bg-gray-800 text-white text-lg first-letter:font-bold first-letter:text-2xl">
+    <div className="flex-grow p-4 overflow-y-auto  text-black text-lg first-letter:font-bold first-letter:text-2xl bg-custom-bg">
       {summary?.topic && (
-        <p className=" bg-gray-800 text-white text-xl font-semibold mb-1 underline underline-offset-2">
+        <p className="  text-xl font-semibold mb-1 underline underline-offset-2">
           {" "}
           {summary?.topic}
         </p>
       )}
-      <p className=" bg-gray-800 text-white text-lg font-poppins text-justify">
-        {" "}
-        {summary?.summary}
-      </p>
+      <p className="  text-lg text-justify"> {summary?.summary}</p>
 
       {summary?.suggestions.length && (
-        <div className="mt-5 flex flex-col md:hidden">
+        <div className="mt-5 flex flex-col md:hidden text-black">
           <hr className="my-4 md:hidden" />
-          <h1 className="text-white cursor-pointer font-semibold text-xl">
+          <h1 className=" cursor-pointer font-semibold text-xl">
             You might like:
           </h1>
 

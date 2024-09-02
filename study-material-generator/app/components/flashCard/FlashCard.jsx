@@ -3,6 +3,7 @@ import React from "react";
 import { shallowEqual, useSelector } from "react-redux";
 import SingleCard from "./Card";
 import Spin from "../../components/shimmerUi/spin";
+
 const FlashCard = () => {
   const { flashCard, status, error } = useSelector((store) => {
     return {
@@ -14,20 +15,16 @@ const FlashCard = () => {
 
   if (status === "loading") {
     return <Spin />;
-  } else if (status === "failed") {
-    <p className="absolute top-1/2 left-1/2 z-50 text-red-700">
-      Error: Something went wrong {error}
-    </p>;
   }
 
   return (
-    <div className="flex-grow p-4 overflow-y-auto">
+    <div className="flex-grow w-full mx-auto px-2">
       {flashCard?.length && (
-        <h1 className="text-center font-bold text-xl py-2 shadow-sm shadow-white mb-4">
+        <h1 className="text-center font-bold text-4xl py-2 text-gradient bg-gradient-to-r from-green-500 to-primary bg-clip-text text-transparent">
           Flash Cards
         </h1>
       )}
-      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-col-3 gap-3 w-[98%] m-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 overflow-y-auto lg:grid-cols-3 gap-6 w-[98%] m-auto">
         {flashCard?.map((item, idx) => {
           return <SingleCard key={item?.id} {...item} />;
         })}

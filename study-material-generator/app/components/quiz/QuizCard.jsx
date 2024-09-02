@@ -31,7 +31,7 @@ const Quiz = ({ id, question, options, correctAnswer, updateScore }) => {
 
   return (
     <div>
-      <h2 className="text-xl my-4">
+      <h2 className="font-bold my-4">
         {id}.{question}
       </h2>
       <div className="grid lg:grid-cols-2 grid-flow-row gap-4">

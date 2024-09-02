@@ -24,7 +24,7 @@ const Quiz = ({ complexity }) => {
   useEffect(() => {
     dispatch(reset());
     setFeedBackVisual(false);
-  }, []);
+  }, [dispatch]);
 
   const updateScore = () => {
     dispatch(incScore());
@@ -37,23 +37,26 @@ const Quiz = ({ complexity }) => {
   }
 
   return (
-    <div className="flex-grow p-4 overflow-y-auto">
+    <div className="flex flex-col flex-grow h-full">
+      {/* Header with Score */}
       {quiz?.quiz?.length > 0 && (
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between p-4">
           <h2 className="text-xl font-bold text-center">Quiz Practice</h2>
-          <p className="text-xl">
-            Score: 0{score} / 0{totalQuiz}
+          <p className="font-bold">
+            Score: {score}/{totalQuiz}
           </p>
         </div>
       )}
 
-      <div className="my-4">
+      {/* Scrollable Quiz Content */}
+      <div className="flex-grow overflow-y-auto p-4">
         {quiz?.quiz.map((item, idx) => (
           <QuizCard key={item.id} {...item} updateScore={updateScore} />
         ))}
       </div>
 
-      <div className="md:hidden">
+      {/* Feedback Section for Small Screens */}
+      <div className="p-4 lg:hidden ">
         {totalQuiz === attemptedQuiz && attemptedQuiz > 0 && (
           <QuizFeedback
             complexity={complexity}

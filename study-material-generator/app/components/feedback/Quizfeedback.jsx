@@ -28,17 +28,22 @@ const QuizFeedback = ({ complexity, totalQuiz, userScore }) => {
   }, []);
 
   return (
-    <div className="mt-4 ">
+    <div className="mt-4  h-80">
       <h1 className="text-center font-semibold text-2xl mb-2 mt-4 border-b-2">
         Feedback
       </h1>
-      {status === "loading" ? (
-        <p className="text-lg ">Loading...</p>
-      ) : (
-        <p className="text-lg font-sans text-justify first-letter:font-bold first-letter:text-2xl">
-          {feedbackRes}
-        </p>
-      )}
+      <div className="h-full overflow-y-auto">
+        {status === "loading" ? (
+          <div className=" flex items-center justify-start gap-3">
+            <p className="animate-spin w-4">⏳</p>
+            <p className="text-lg text-primary font-semibold "> Loading... </p>
+          </div>
+        ) : (
+          <p className="text-base font-sans text-justify first-letter:font-bold first-letter:text-2xl overflow-hidden">
+            {feedbackRes}
+          </p>
+        )}
+      </div>
     </div>
   );
 };

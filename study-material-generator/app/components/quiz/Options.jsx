@@ -10,7 +10,7 @@ const Options = ({
   return (
     <button
       onClick={() => handleOptionClick(option)}
-      className={`py-2 border rounded-md ${
+      className={`py-2 border rounded-md shadow-sm shadow-gray-500 ${
         selectedOption
           ? option === correctAnswer
             ? "bg-green-500 text-white"

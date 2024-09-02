@@ -1,12 +1,11 @@
 import React from "react";
-
 const Spin = () => {
   return (
-    <div className="absolute top-1/2 left-1/2">
+    <div className="absolute top-1/2 left-[45%]">
       <svg
         aria-hidden="true"
         role="status"
-        className="inline w-6 h-6 me-3 text-gray-200 animate-spin dark:text-gray-600"
+        className="inline w-6 h-6 me-3 text-primary animate-spin"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +19,7 @@ const Spin = () => {
           fill="#fff"
         />
       </svg>
-      Loading...
+      <p className="text-primary font-bold inline-block">Loading...</p>
     </div>
   );
 };

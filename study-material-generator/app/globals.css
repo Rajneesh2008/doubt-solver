@@ -6,22 +6,12 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: white;
-  background: rgb(30 50 50);
+  color: #000;
+  background: #fff;
 }
 
 @layer base {
   body {
-    @apply font-serif;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p {
-    @apply font-roboto;
+    @apply font-sans;
   }
 }

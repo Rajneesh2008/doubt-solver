@@ -14,10 +14,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="w-full px-3 py-0">
-          <Navbar />
+        <div className=" h-screen w-full box-border">
+          <div className="w-full py-0">
+            <Navbar />
+          </div>
+          <StoreProvider>{children}</StoreProvider>
         </div>
-        <StoreProvider>{children}</StoreProvider>
       </body>
     </html>
   );

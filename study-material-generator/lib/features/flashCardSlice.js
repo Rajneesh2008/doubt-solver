@@ -6,7 +6,7 @@ import axios from "axios";
 export const fetchFlash = createAsyncThunk(
   "flashCard/fetchFlash",
   async (reqBody) => {
-    const response = await axios.post("http://localhost:4001/doubt", reqBody);
+    const response = await axios.post("https://doubt-solver-tgsr.onrender.com/doubt", reqBody);
 
     return response.data;
   }

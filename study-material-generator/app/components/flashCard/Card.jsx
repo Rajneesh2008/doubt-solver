@@ -1,13 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 
 const SingleCard = ({ Q, A }) => {
   return (
-    <div className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 cursor-pointer">
-      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+    <div className="block max-w-sm overflow-hidden p-6 bg-gradient-to-r from-green-500 via-green-600 to-primary hover:animate-flyin border border-transparent rounded-lg shadow-lg transform transition-transform duration-300 cursor-pointer">
+      <h5 className="mb-2 text-2xl font-extrabold tracking-tight text-white drop-shadow-lg">
         {Q}
       </h5>
-      <p className="font-normal text-gray-400 dark:text-gray-200">{A}</p>
+      <p className="font-medium text-white drop-shadow-md">{A}</p>
     </div>
   );
 };

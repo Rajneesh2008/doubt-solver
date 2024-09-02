@@ -4,14 +4,17 @@ import axios from "axios";
 
 // Thunk for fetching quiz
 export const fetchQuiz = createAsyncThunk("quiz/fetchQuiz", async (reqBody) => {
-  const response = await axios.post("http://localhost:4001/doubt", reqBody);
+  const response = await axios.post(
+    "https://doubt-solver-tgsr.onrender.com/doubt",
+    reqBody
+  );
   return response.data;
 });
 export const fetchFeedback = createAsyncThunk(
   "quiz/fetchFeedback",
   async (reqBody) => {
     const response = await axios.post(
-      "http://localhost:4001/feedback",
+      "https://doubt-solver-tgsr.onrender.com/feedback",
       reqBody
     );
     return response.data;
